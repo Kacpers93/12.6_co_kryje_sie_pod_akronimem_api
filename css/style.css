@@ -71,11 +71,9 @@ h2 {
     list-style-type: none;
     margin: 15px 0;
     word-wrap: break-word;
-    /*    float: left;*/
 }
 
 #countries #containers li img {
     height: 100px;
     width: 50%;
 }
-
