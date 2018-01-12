@@ -1,11 +1,5 @@
-var url = 'https://restcountries.eu/rest/v1/name/';
+var url = 'https://restcountries.eu/rest/v2/name/';
 var countriesList = $('#countries');
-var capitalList = $("#capital-name");
-var timezoneList = $("#time-zones");
-var populationList = $("#population");
-var bordersList = $("#border");
-//var flagsElement = $('#flagimg')
-//var flag = .append(item.flag)
 
 $('#search').click(searchCountries);
 
@@ -20,67 +14,23 @@ function searchCountries() {
 }
 
 
-
-
-
 function showCountriesList(resp) {
     countriesList.empty();
-    capitalList.empty();
-    timezoneList.empty();
-    populationList.empty();
-    bordersList.empty();
     resp.forEach(function (item) {
         
+        var mainList = $('<li id="containers">');
+        var list = $('<ul id="secoundList">');
+        var img = $('<img>').attr('src', item.flag);
         
-        $('<li>').text(item.name).appendTo(countriesList);
-        $('<li>').text("Region: " + item.subregion).appendTo(countriesList);
+        $('<li>').text("Country: " + item.name).appendTo(list);
+        $('<li>').text("Region: " + item.subregion).appendTo(list);
+        $('<li>').text("Capital: " + item.capital).appendTo(list);
+        $('<li>').text("Time zone: " + item.timezones).appendTo(list);
+        $('<li>').text("Population: " + item.population + " people").appendTo(list);
+        $('<li>').text("Border neighbors: " + item.borders).appendTo(list);
         
-        
-//        $('<li>').addClass('flagimage').prepend('<img class="flagimg" src="#" />').attr("src", (item.flag)).appendTo(countriesList);
-        
-        
-//        $('<img class="flagimg" src="#" />')
-        
-        
-//        $('<li>').attr('id', 'flagimage').appendTo(countriesList);
-//        $('<img class="flagimg" src="#" />').appendTo(flagsElement);
-//        var flagsElement = $('#flagsimage');
-        
-        
-        
-        
-//        $('<li>').prepend('<img src="#" />').appendTo(countriesList);
-//        $('img').attr("src",(item.flag));
-        
-        
-        
-        
-        
-//        .attr("src", (item.flag))
-        
-        
-        
-//        $('<li>').attr(item.flag).appendTo(countriesList);
-        
-//        $('<li>').prepend('<img/>').attr('src',(item.flag)).appendTo(countriesList);
-        
-        
-//        $('<li>').append(item.flag).appendTo(countriesList);
-        
-        
-        
-//        $('<li>').prepend('<img src="#" />').appendTo(countriesList);
-//        $
-        
-        
-        
-//        $('<li>').prepend('<img src="#" />').attr("src",(item.flag.appendTo("img"))).appendTo(countriesList);
-//        $('<img>').prop("src",(item.flag.appendTo("img")));
-        
-        
-        $('<li>').text(item.capital).appendTo(capitalList);
-        $('<li>').text(item.timezones).appendTo(timezoneList);
-        $('<li>').text(item.population + " people").appendTo(populationList);
-        $('<li>').text(item.borders).appendTo(bordersList);
+        $('<li>').append(img).appendTo(list);
+        $(list).appendTo(mainList);
+        $(mainList).appendTo(countriesList);
     });
 };
